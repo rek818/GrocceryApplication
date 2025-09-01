@@ -14,15 +14,6 @@ public class LoginTest extends TestNGBase {
 	@Test
 	public void verifyLoginWithValidCredentials() throws IOException {
 
-//		WebElement usernameField = driver.findElement(By.name("username"));
-//		usernameField.sendKeys("admin");
-//		WebElement passwordField = driver.findElement(By.name("password"));
-//		passwordField.sendKeys("admin");
-//
-//		WebElement signinButton = driver.findElement(By.xpath("//button[text()='Sign In']"));
-//
-//		signinButton.click();
-
 		String userName = ExcelUtility.getStringData(1, 0, "LoginPage");
 		String password = ExcelUtility.getStringData(1, 1, "LoginPage");
 

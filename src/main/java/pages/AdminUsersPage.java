@@ -17,7 +17,7 @@ public class AdminUsersPage {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath = "//p[normalize-space()='Admin Users']/ancestor::div/a[normalize-space()='More info']")
+	@FindBy(xpath = "//p[text()='Admin Users']/ancestor::div/a[contains(text(),'More info')]")
 	private WebElement moreInfo;
 
 	public void clickOnMoreInfo() {
@@ -39,38 +39,71 @@ public class AdminUsersPage {
 	@FindBy(xpath = "//button[@class='btn btn-block-sm btn-danger' and @name='Create']")
 	private WebElement save;
 
+	@FindBy(xpath = "//div[@class='card-footer center']//a[text()='Reset']")
+	private WebElement resetOnAddUser;
+
 	public void clickOnNew() {
 		newUser.click();
+
+	}
+
+	public void enterUsernameOnUsernameField() {
 		username.sendKeys("Rekha");
+	}
+
+	public void enterPasswordOnPasswordField() {
 		password.sendKeys("rekha");
 
+	}
+
+	public void selectUserType() {
 		Select select = new Select(userType);
 		select.selectByIndex(2);
-		save.click();
+	}
 
+	public void clickOnSave() {
+		save.click();
+	}
+
+	public void clickOnReset() {
+		resetOnAddUser.click();
 	}
 
 	@FindBy(xpath = "//a[@class='btn btn-rounded btn-primary']")
 	private WebElement searchUser;
-	
-	@FindBy(name="un")
+
+	@FindBy(name = "un")
 	private WebElement usernameOnSearch;
 
-	@FindBy(id="ut")
+	@FindBy(id = "ut")
 	private WebElement userTypeOnSearch;
-	
-	@FindBy(xpath="//button[@class='btn btn-block-sm btn-danger' and @name='Search']")
+
+	@FindBy(xpath = "//button[@class='btn btn-block-sm btn-danger' and @name='Search']")
 	private WebElement search;
-	
+
+	@FindBy(xpath = "//div[@class='card-body']//a[text()='Reset']")
+	private WebElement resetOnSearchUser;
 
 	public void clickOnSearch() {
 		searchUser.click();
+
+	}
+
+	public void enterUsernameOnSearchbox() {
 		usernameOnSearch.sendKeys("Rekha");
-		
-		Select select=new Select(userTypeOnSearch);
+	}
+
+	public void selectUserTypeOnSearch() {
+		Select select = new Select(userTypeOnSearch);
 		select.selectByIndex(2);
-		
+	}
+
+	public void clickOnSearchInsideSearch() {
 		search.click();
+	}
+
+	public void clickOnResetOnSearch() {
+		resetOnSearchUser.click();
 	}
 
 }
