@@ -2,20 +2,31 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-09-01T14:40:37 IST" name="Default suite" finished-at="2025-09-01T14:40:49 IST" duration-ms="12205">
+  <suite started-at="2025-09-03T14:53:06 IST" name="Suite" finished-at="2025-09-03T14:53:11 IST" duration-ms="5269">
     <groups>
     </groups>
-    <test started-at="2025-09-01T14:40:37 IST" name="Default test" finished-at="2025-09-01T14:40:49 IST" duration-ms="12205">
-      <class name="testScript.AdminUsersTest">
-        <test-method is-config="true" signature="initializeBrowser()[pri:0, instance:testScript.AdminUsersTest@18078bef]" started-at="2025-09-01T14:40:37 IST" name="initializeBrowser" finished-at="2025-09-01T14:40:43 IST" duration-ms="6396" status="PASS">
+    <test started-at="2025-09-03T14:53:06 IST" name="Test" finished-at="2025-09-03T14:53:11 IST" duration-ms="5269">
+      <class name="testScript.LoginTest">
+        <test-method is-config="true" signature="initializeBrowser()[pri:0, instance:testScript.LoginTest@313ac989]" started-at="2025-09-03T14:53:06 IST" name="initializeBrowser" finished-at="2025-09-03T14:53:09 IST" duration-ms="3251" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initializeBrowser -->
-        <test-method signature="verifySearchAdminUsers()[pri:0, instance:testScript.AdminUsersTest@18078bef]" started-at="2025-09-01T14:40:43 IST" name="verifySearchAdminUsers" finished-at="2025-09-01T14:40:49 IST" duration-ms="5726" status="PASS">
+        <test-method signature="verifyLoginWithValidCredentials()[pri:1, instance:testScript.LoginTest@313ac989]" started-at="2025-09-03T14:53:09 IST" name="verifyLoginWithValidCredentials" description="sucessful user login with valid credentials" finished-at="2025-09-03T14:53:11 IST" duration-ms="1443" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifySearchAdminUsers -->
-      </class> <!-- testScript.AdminUsersTest -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+        </test-method> <!-- verifyLoginWithValidCredentials -->
+        <test-method is-config="true" signature="driverQuit(org.testng.ITestResult)[pri:0, instance:testScript.LoginTest@313ac989]" started-at="2025-09-03T14:53:11 IST" name="driverQuit" finished-at="2025-09-03T14:53:11 IST" duration-ms="506" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyLoginWithValidCredentials status=SUCCESS method=LoginTest.verifyLoginWithValidCredentials()[pri:1, instance:testScript.LoginTest@313ac989] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- driverQuit -->
+      </class> <!-- testScript.LoginTest -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
 </testng-results>

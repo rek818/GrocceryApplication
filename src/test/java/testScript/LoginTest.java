@@ -11,7 +11,7 @@ import utilities.ExcelUtility;
 
 public class LoginTest extends TestNGBase {
 
-	@Test
+	@Test(priority=1,description="sucessful user login with valid credentials")
 	public void verifyLoginWithValidCredentials() throws IOException {
 
 		String userName = ExcelUtility.getStringData(1, 0, "LoginPage");
@@ -23,7 +23,7 @@ public class LoginTest extends TestNGBase {
 		login.clickSigninButton();
 	}
 	
-	@Test
+	@Test(priority=2)
 	
 	public void verifyLoginWithInValidUsernameValidPassword() throws IOException
 	{
@@ -37,7 +37,7 @@ public class LoginTest extends TestNGBase {
 		login.clickSigninButton();
 		
 	}
-	@Test
+	@Test(priority=3)
 	
 	public void verifyLoginWithValidUsernameInvalidPassword() throws IOException
 	{
@@ -51,7 +51,7 @@ public class LoginTest extends TestNGBase {
 		login.clickSigninButton();
 		
 	}
-	@Test
+	@Test(priority=4)
 	
 	public void verifyLoginWithInValidUsernameInvalidPassword() throws IOException
 	{
