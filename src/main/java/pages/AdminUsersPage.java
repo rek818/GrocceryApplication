@@ -39,20 +39,17 @@ public class AdminUsersPage {
 	@FindBy(xpath = "//button[@class='btn btn-block-sm btn-danger' and @name='Create']")
 	private WebElement save;
 
-	@FindBy(xpath = "//div[@class='card-footer center']//a[text()='Reset']")
-	private WebElement resetOnAddUser;
-
 	public void clickOnNew() {
 		newUser.click();
 
 	}
 
-	public void enterUsernameOnUsernameField() {
-		username.sendKeys("Rekha");
+	public void enterUsernameOnUsernameField(String adminUserName) {
+		username.sendKeys(adminUserName);
 	}
 
-	public void enterPasswordOnPasswordField() {
-		password.sendKeys("rekha");
+	public void enterPasswordOnPasswordField(String adminPassword) {
+		password.sendKeys(adminPassword);
 
 	}
 
@@ -63,10 +60,6 @@ public class AdminUsersPage {
 
 	public void clickOnSave() {
 		save.click();
-	}
-
-	public void clickOnReset() {
-		resetOnAddUser.click();
 	}
 
 	@FindBy(xpath = "//a[@class='btn btn-rounded btn-primary']")
@@ -81,16 +74,13 @@ public class AdminUsersPage {
 	@FindBy(xpath = "//button[@class='btn btn-block-sm btn-danger' and @name='Search']")
 	private WebElement search;
 
-	@FindBy(xpath = "//div[@class='card-body']//a[text()='Reset']")
-	private WebElement resetOnSearchUser;
-
 	public void clickOnSearch() {
 		searchUser.click();
 
 	}
 
-	public void enterUsernameOnSearchbox() {
-		usernameOnSearch.sendKeys("Rekha");
+	public void enterUsernameOnSearchbox(String adminUserName) {
+		usernameOnSearch.sendKeys(adminUserName);
 	}
 
 	public void selectUserTypeOnSearch() {
@@ -101,9 +91,4 @@ public class AdminUsersPage {
 	public void clickOnSearchInsideSearch() {
 		search.click();
 	}
-
-	public void clickOnResetOnSearch() {
-		resetOnSearchUser.click();
-	}
-
 }

@@ -7,8 +7,7 @@
       <class name="testScript.LoginTest">
       <methods>
       <include name="verifyLoginWithValidCredentials"></include>
-      <include name=""></include>
-      <exclude name=""></exclude>
+      <include name="verifyLoginWithValidUsernameInvalidPassword"></include>
       </methods>
       </class>
       

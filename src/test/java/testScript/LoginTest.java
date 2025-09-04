@@ -23,7 +23,7 @@ public class LoginTest extends TestNGBase {
 		login.clickSigninButton();
 	}
 	
-	@Test(priority=2)
+	@Test(priority=2,description="user login with invalid username and valid password")
 	
 	public void verifyLoginWithInValidUsernameValidPassword() throws IOException
 	{
@@ -37,7 +37,7 @@ public class LoginTest extends TestNGBase {
 		login.clickSigninButton();
 		
 	}
-	@Test(priority=3)
+	@Test(priority=3,description="user login with valid username and invalid password")
 	
 	public void verifyLoginWithValidUsernameInvalidPassword() throws IOException
 	{
@@ -51,7 +51,7 @@ public class LoginTest extends TestNGBase {
 		login.clickSigninButton();
 		
 	}
-	@Test(priority=4)
+	@Test(priority=4,description="user login with invalid username and invalid password")
 	
 	public void verifyLoginWithInValidUsernameInvalidPassword() throws IOException
 	{

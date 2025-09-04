@@ -2,9 +2,6 @@ package testScript;
 
 import java.io.IOException;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
 import automationCore.TestNGBase;
@@ -15,7 +12,7 @@ import utilities.ExcelUtility;
 
 public class HomeTest extends TestNGBase {
 
-	@Test
+	@Test(description="To verify whether user can successfully logout from the home page")
 	public void verifyUserCanSuccessfullyLogout() throws IOException {
 		
 		
