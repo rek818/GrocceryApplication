@@ -5,7 +5,7 @@
     <classes>
       <class name="testScript.ManageNewsTest">
         <methods>
-          <include name="verifyWhetherUserIsAbleToAddNewNewsTitle"/>
+          <include name="verifySearchForNewNewsTitle"/>
           <include name="driverQuit"/>
           <include name="initializeBrowser"/>
         </methods>

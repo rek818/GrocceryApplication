@@ -2,6 +2,7 @@ package testScript;
 
 import java.io.IOException;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import automationCore.TestNGBase;
@@ -32,6 +33,9 @@ public class ManageNewsTest extends TestNGBase {
 
 		news.enterNewsTitleInsideTextBox(newsTitle);
 		news.clickOnSaveButton();
+		
+		boolean successMessageDisplay=news.isNewsTitleSuccessMessageDispalyed();
+		Assert.assertTrue(successMessageDisplay,"The news title is not added successfully");
 
 	}
 
@@ -52,6 +56,9 @@ public class ManageNewsTest extends TestNGBase {
 		String newsTitle = ExcelUtility.getStringData(1, 0, "NewsPage");
 		news.enterNewsTitlInsideSearchBox(newsTitle);
 		news.clickOnSearchResultButton();
+		
+		boolean notFoundMessageDisplay=news.isNotFoundMessageDisplayed();
+		Assert.assertFalse(notFoundMessageDisplay, "The news title is not found"); 
 	}
 
 	@Test

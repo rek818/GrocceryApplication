@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -38,6 +39,12 @@ public class AdminUsersPage {
 
 	@FindBy(xpath = "//button[@class='btn btn-block-sm btn-danger' and @name='Create']")
 	private WebElement save;
+
+	@FindBy(xpath = "//div[contains(@class, 'alert-success') and contains(., 'User Created Successfully')]")
+	private WebElement alertMessage;
+	
+	@FindBy(xpath="//*[@id='res' and contains(., 'RESULT NOT FOUND')]")
+	private WebElement notFoundMessage;
 
 	public void clickOnNew() {
 		newUser.click();
@@ -91,4 +98,22 @@ public class AdminUsersPage {
 	public void clickOnSearchInsideSearch() {
 		search.click();
 	}
+
+	public boolean isAlertMessageDisplayed() {
+		return alertMessage.isDisplayed();
+	}
+	public boolean isNotFoundMessageDisplayed() {
+	    try {
+	        return notFoundMessage.isDisplayed();
+	    } catch (NoSuchElementException e) {
+	        return false; // Element not present → message is not displayed
+	    }
+	}
+
+//	
+//	public boolean isNotFoundMessageDisplayed()
+//	{
+//		return notFoundMessage.isDisplayed();
+//	}
+
 }

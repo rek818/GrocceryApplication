@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -34,6 +35,10 @@ public class ManageNewsPage {
 	private WebElement searchResultButton;
 	@FindBy(xpath = "//a[@class='btn btn-rounded btn-warning']")
 	private WebElement resetButton;
+	@FindBy(className="alert-success")
+	private WebElement successMessage;
+	@FindBy(xpath="//*[@id='res' and contains(., 'RESULT NOT FOUND')]")
+	private WebElement notFoundMessage;
 
 	public void goToManageNewsPage() {
 		manageNewsPage.click();
@@ -66,4 +71,17 @@ public class ManageNewsPage {
 	public void clickOnResetButton() {
 		resetButton.click();
 	}
+	public boolean isNewsTitleSuccessMessageDispalyed()
+	{
+		return successMessage.isDisplayed();
+	}
+	public boolean isNotFoundMessageDisplayed() {
+	    try {
+	        return notFoundMessage.isDisplayed();
+	    } catch (NoSuchElementException e) {
+	        return false; // Element not present → message is not displayed
+	    }
+	}
+
+	
 }

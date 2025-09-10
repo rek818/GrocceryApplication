@@ -2,6 +2,7 @@ package testScript;
 
 import java.io.IOException;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import automationCore.TestNGBase;
@@ -37,6 +38,10 @@ public class AdminUsersTest extends TestNGBase {
 		adminpage.selectUserType();
 		adminpage.clickOnSave();
 
+		boolean alertDisplay = adminpage.isAlertMessageDisplayed();
+
+		Assert.assertTrue(alertDisplay, "New user is not added successfully");
+
 	}
 
 	@Test(priority = 2, description = "To verify the search of an added user inside AdminUsers page")
@@ -58,6 +63,10 @@ public class AdminUsersTest extends TestNGBase {
 		adminpage.enterUsernameOnSearchbox(adminUserName);
 		adminpage.selectUserTypeOnSearch();
 		adminpage.clickOnSearchInsideSearch();
+		
+		boolean notFoundMessageDisplay=adminpage.isNotFoundMessageDisplayed();
+		Assert.assertFalse(notFoundMessageDisplay, "The user is not found");
+		
 
 	}
 
