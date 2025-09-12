@@ -2,9 +2,11 @@ package testScript;
 
 import java.io.IOException;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import automationCore.TestNGBase;
+import constants.Constant;
 import pages.HomePage;
 import pages.LoginPage;
 import utilities.ExcelUtility;
@@ -28,6 +30,10 @@ public class HomeTest extends TestNGBase {
 		
 		home.clickOnAdmin();
 		home.clickOnLogout();
+		
+		String expected="7rmart supermarket";
+		String actual=home.getText();
+		Assert.assertEquals(actual,expected,Constant.LOGOUTERROR);
 		
 		
 		

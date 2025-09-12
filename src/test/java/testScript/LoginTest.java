@@ -2,20 +2,22 @@ package testScript;
 
 
 import java.io.IOException;
+import java.lang.invoke.ConstantBootstraps;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import automationCore.TestNGBase;
+import constants.Constant;
 import pages.LoginPage;
 import utilities.ExcelUtility;
 
 public class LoginTest extends TestNGBase {
 
-	@Test(priority=1,description="sucessful user login with valid credentials",groups= {"smoke"})
+	@Test(priority=1,description="sucessful user login with valid credentials",groups= {"smoke"},retryAnalyzer=retryAnalyzer.Retry.class)
 	public void verifyLoginWithValidCredentials() throws IOException {
 
-		String userName = ExcelUtility.getStringData(1, 0, "LoginPage");
+		String userName = ExcelUtility.getStringData(1, 10, "LoginPage");
 		String password = ExcelUtility.getStringData(1, 1, "LoginPage");
 
 		LoginPage login = new LoginPage(driver);
@@ -24,7 +26,7 @@ public class LoginTest extends TestNGBase {
 		login.clickSigninButton();
 		
 		boolean dashboardDisplay=login.isDashboardDisplayed();
-		Assert.assertTrue(dashboardDisplay,"User could not login with valid credential");
+		Assert.assertTrue(dashboardDisplay,Constant.VALIDCREDENTIALERROR);
 	}
 	
 	@Test(priority=2,description="user login with invalid username and valid password")
@@ -42,7 +44,7 @@ public class LoginTest extends TestNGBase {
 		
 		String expected="7rmrt supermarket";
 		String actual=login.getLoginText();
-		Assert.assertEquals(actual,expected,"user was able to login with invalid username");
+		Assert.assertEquals(actual,expected,Constant.INVALIDUSERNAMEERROR);
 	}
 	@Test(priority=3,description="user login with valid username and invalid password")
 	
@@ -59,7 +61,7 @@ public class LoginTest extends TestNGBase {
 		
 		String expected="7rmart supermarket";
 		String actual=login.getLoginText();
-		Assert.assertEquals(actual,expected,"user was able to login with invalid password");
+		Assert.assertEquals(actual,expected,Constant.INVALIDCREDENTIALERROR);
 		
 	}
 	@Test(priority=4,description="user login with invalid username and invalid password",groups= {"smoke"})
@@ -77,7 +79,7 @@ public class LoginTest extends TestNGBase {
 		
 		String expected="7rmart supermarket";
 		String actual=login.getLoginText();
-		Assert.assertEquals(actual,expected,"user was able to login with invalid username and invalid password");
+		Assert.assertEquals(actual,expected,Constant.INVALIDCREDENTIALERROR);
 		
 		
 	}

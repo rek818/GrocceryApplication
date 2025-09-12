@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-
 public class HomePage {
 
 	public WebDriver driver;
@@ -15,23 +14,22 @@ public class HomePage {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath="//a[@class='nav-link' and @data-toggle='dropdown']") 
+	@FindBy(xpath = "//a[@class='nav-link' and @data-toggle='dropdown']")
 	private WebElement admin;
-	@FindBy(xpath="//i[@class='ace-icon fa fa-power-off']")
+	@FindBy(xpath = "//i[@class='ace-icon fa fa-power-off']")
 	private WebElement logout;
+	@FindBy(xpath = "//b[text()='7rmart supermarket']")
+	private WebElement title;
 
-	
-	
-	public void clickOnAdmin()
-	{
+	public void clickOnAdmin() {
 		admin.click();
 	}
-	
-	public void clickOnLogout()
-	{
+
+	public void clickOnLogout() {
 		logout.click();
 	}
 
+	public String getText() {
+		return title.getText();
 	}
-
-
+}

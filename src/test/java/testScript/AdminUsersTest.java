@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import automationCore.TestNGBase;
+import constants.Constant;
 import pages.AdminUsersPage;
 import pages.LoginPage;
 import utilities.ExcelUtility;
@@ -40,7 +41,7 @@ public class AdminUsersTest extends TestNGBase {
 
 		boolean alertDisplay = adminpage.isAlertMessageDisplayed();
 
-		Assert.assertTrue(alertDisplay, "New user is not added successfully");
+		Assert.assertTrue(alertDisplay, Constant.USERNOTADDEDERROR);
 
 	}
 
@@ -65,7 +66,7 @@ public class AdminUsersTest extends TestNGBase {
 		adminpage.clickOnSearchInsideSearch();
 		
 		boolean notFoundMessageDisplay=adminpage.isNotFoundMessageDisplayed();
-		Assert.assertFalse(notFoundMessageDisplay, "The user is not found");
+		Assert.assertFalse(notFoundMessageDisplay, Constant.USERNOTFOUNDERROR);
 		
 
 	}

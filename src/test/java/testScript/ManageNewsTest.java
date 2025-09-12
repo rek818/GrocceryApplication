@@ -1,11 +1,13 @@
 package testScript;
 
 import java.io.IOException;
+import java.lang.invoke.ConstantBootstraps;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import automationCore.TestNGBase;
+import constants.Constant;
 import pages.LoginPage;
 import pages.ManageNewsPage;
 import utilities.ExcelUtility;
@@ -35,7 +37,7 @@ public class ManageNewsTest extends TestNGBase {
 		news.clickOnSaveButton();
 		
 		boolean successMessageDisplay=news.isNewsTitleSuccessMessageDispalyed();
-		Assert.assertTrue(successMessageDisplay,"The news title is not added successfully");
+		Assert.assertTrue(successMessageDisplay,Constant.NEWSTITLENOTADDEDERROR);
 
 	}
 
@@ -58,7 +60,7 @@ public class ManageNewsTest extends TestNGBase {
 		news.clickOnSearchResultButton();
 		
 		boolean notFoundMessageDisplay=news.isNotFoundMessageDisplayed();
-		Assert.assertFalse(notFoundMessageDisplay, "The news title is not found"); 
+		Assert.assertFalse(notFoundMessageDisplay,Constant.NEWSTITLENOTFOUNDERROR); 
 	}
 
 	@Test
