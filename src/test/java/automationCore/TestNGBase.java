@@ -1,7 +1,9 @@
 package automationCore;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,15 +14,21 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
+import constants.Constant;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import utilities.ScreenShotUtility;
 
 public class TestNGBase {
+	Properties prop;
 	public WebDriver driver;
+	FileInputStream fs;
 
 	@BeforeMethod(alwaysRun=true)
 	@Parameters("browser")
 	public void initializeBrowser(String browser) throws Exception {
+		prop=new Properties();
+		fs=new FileInputStream(Constant.CONFIGFILE);
+		prop.load(fs);
 		if(browser.equalsIgnoreCase("chrome"))
 		{
 			driver = new ChromeDriver();
@@ -45,7 +53,7 @@ public class TestNGBase {
 		}
 //		
 //			driver.get("https://selenium.qabible.in/");//open url
-		driver.get("https://groceryapp.uniqassosiates.com/admin/login");
+		driver.get(prop.getProperty("url"));
 
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));

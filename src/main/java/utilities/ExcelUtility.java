@@ -8,6 +8,8 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import constants.Constant;
+
 public class ExcelUtility {
 
 	// TODO Auto-generated method stub
@@ -17,7 +19,7 @@ public class ExcelUtility {
 
 	public static String getStringData(int a, int b, String sheet) throws IOException {
 		f = new FileInputStream(
-				"C:\\Users\\USER\\eclipse-workspace\\GrocceryApplication\\src\\test\\resources\\LoginTestData.xlsx");
+				Constant.EXCELPATH);
 		wb = new XSSFWorkbook(f);// to get values from workbook present inside file
 		sh = wb.getSheet(sheet);// to get values from sheet
 		XSSFRow r = sh.getRow(a);
@@ -27,7 +29,7 @@ public class ExcelUtility {
 
 	public static String getIntegerData(int a, int b, String sheet) throws IOException {
 		f = new FileInputStream(
-				"C:\\Users\\USER\\eclipse-workspace\\GrocceryApplication\\src\\test\\resources\\LoginTestData.xlsx");
+				Constant.EXCELPATH);
 		wb = new XSSFWorkbook(f);// to get values from workbook present inside file
 		sh = wb.getSheet(sheet);// to get values from sheet
 		XSSFRow r = sh.getRow(a);
@@ -39,7 +41,7 @@ public class ExcelUtility {
 
 	public static String getFloatData(int a, int b, String sheet) throws IOException {
 		f = new FileInputStream(
-				"C:\\Users\\USER\\eclipse-workspace\\GrocceryApplication\\src\\test\\resources\\LoginTestData.xlsx");
+				Constant.EXCELPATH);
 		wb = new XSSFWorkbook(f);// to get values from workbook present inside file
 		sh = wb.getSheet(sheet);// to get values from sheet
 		XSSFRow r = sh.getRow(a);

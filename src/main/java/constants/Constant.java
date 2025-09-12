@@ -10,6 +10,10 @@ public class Constant {
 	public static final String USERNOTFOUNDERROR="New user is not found after searching";
 	public static final String NEWSTITLENOTADDEDERROR="New News title is not added successfully";
 	public static final String NEWSTITLENOTFOUNDERROR="News is not found after seraching";
+	public static final String EXCELPATH=System.getProperty("user.dir")+"\\src\\test\\resources\\LoginTestData.xlsx";
+	public static final String CONFIGFILE=System.getProperty("user.dir")+"\\src\\main\\resources\\Config.properties";
+			
+			
 
 	
 	
