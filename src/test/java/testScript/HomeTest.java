@@ -13,6 +13,7 @@ import utilities.ExcelUtility;
 
 
 public class HomeTest extends TestNGBase {
+	HomePage homepage; 
 
 	@Test(description="To verify whether user can successfully logout from the home page")
 	public void verifyUserCanSuccessfullyLogout() throws IOException {
@@ -22,17 +23,16 @@ public class HomeTest extends TestNGBase {
 		String password = ExcelUtility.getStringData(1, 1, "LoginPage");
 
 		LoginPage login = new LoginPage(driver);
-		login.enterUsernameOnUsernameField(userName);
-		login.enterPasswordOnPasswordField(password);
-		login.clickSigninButton();
+		login.enterUsernameOnUsernameField(userName).enterPasswordOnPasswordField(password);
 		
-		HomePage home = new HomePage(driver);
 		
-		home.clickOnAdmin();
-		home.clickOnLogout();
+		homepage=login.clickSigninButton();
+		
+		homepage.clickOnAdmin();
+		login=homepage.clickOnLogout();
 		
 		String expected="7rmart supermarket";
-		String actual=home.getText();
+		String actual=homepage.getText();
 		Assert.assertEquals(actual,expected,Constant.LOGOUTERROR);
 		
 		

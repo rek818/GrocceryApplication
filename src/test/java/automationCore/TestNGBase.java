@@ -54,6 +54,7 @@ public class TestNGBase {
 //		
 //			driver.get("https://selenium.qabible.in/");//open url
 		driver.get(prop.getProperty("url"));
+		
 
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));

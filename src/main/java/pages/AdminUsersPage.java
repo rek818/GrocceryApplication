@@ -5,25 +5,28 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
+
+
+import utilities.PageUtility;
+import utilities.WaitUtility;
 
 public class AdminUsersPage {
 
 	public WebDriver driver;
+	PageUtility pageUtility;
+	WaitUtility waitUtility;
 
 	public AdminUsersPage(WebDriver driver)
 	// TODO Auto-generated constructor stub
 	{
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+		pageUtility=new PageUtility();
 	}
 
-	@FindBy(xpath = "//p[text()='Admin Users']/ancestor::div/a[contains(text(),'More info')]")
-	private WebElement moreInfo;
+	
 
-	public void clickOnMoreInfo() {
-		moreInfo.click();
-	}
+	
 
 	@FindBy(xpath = "//a[@class='btn btn-rounded btn-danger']")
 	private WebElement newUser;
@@ -46,27 +49,31 @@ public class AdminUsersPage {
 	@FindBy(xpath="//*[@id='res' and contains(., 'RESULT NOT FOUND')]")
 	private WebElement notFoundMessage;
 
-	public void clickOnNew() {
-		newUser.click();
+	public AdminUsersPage clickOnNew() {
+		pageUtility.clickElement(newUser);
+		return this;
 
 	}
 
-	public void enterUsernameOnUsernameField(String adminUserName) {
-		username.sendKeys(adminUserName);
+	public AdminUsersPage enterUsernameOnUsernameField(String adminUserName) {
+		pageUtility.enterText(username, adminUserName);
+		return this;
 	}
 
-	public void enterPasswordOnPasswordField(String adminPassword) {
-		password.sendKeys(adminPassword);
+	public AdminUsersPage enterPasswordOnPasswordField(String adminPassword) {
+		pageUtility.enterText(password, adminPassword);
+		return this;
 
 	}
 
-	public void selectUserType() {
-		Select select = new Select(userType);
-		select.selectByIndex(2);
+	public AdminUsersPage selectUserType(int index) {
+		pageUtility.selectDropdownWithIndex(userType,index);
+		return this;
 	}
 
-	public void clickOnSave() {
-		save.click();
+	public AdminUsersPage clickOnSave() {
+		pageUtility.clickElement(save);
+		return this;
 	}
 
 	@FindBy(xpath = "//a[@class='btn btn-rounded btn-primary']")
@@ -81,39 +88,39 @@ public class AdminUsersPage {
 	@FindBy(xpath = "//button[@class='btn btn-block-sm btn-danger' and @name='Search']")
 	private WebElement search;
 
-	public void clickOnSearch() {
-		searchUser.click();
+	public AdminUsersPage clickOnSearch() {
+		pageUtility.clickElement(searchUser);
+		return this;
 
 	}
 
-	public void enterUsernameOnSearchbox(String adminUserName) {
-		usernameOnSearch.sendKeys(adminUserName);
+	public AdminUsersPage enterUsernameOnSearchbox(String adminUserName) {
+		pageUtility.enterText(usernameOnSearch, adminUserName);
+		return this;
 	}
 
-	public void selectUserTypeOnSearch() {
-		Select select = new Select(userTypeOnSearch);
-		select.selectByIndex(2);
+	public AdminUsersPage selectUserTypeOnSearch(int index) {
+		pageUtility.selectDropdownWithIndex(userTypeOnSearch, index);
+		return this;
 	}
 
-	public void clickOnSearchInsideSearch() {
-		search.click();
+	public AdminUsersPage clickOnSearchInsideSearch() {
+		pageUtility.clickElement(search);
+		return this;
 	}
 
+	//assertion
 	public boolean isAlertMessageDisplayed() {
-		return alertMessage.isDisplayed();
+		return pageUtility.isElementDisplayed(alertMessage);
 	}
 	public boolean isNotFoundMessageDisplayed() {
 	    try {
-	        return notFoundMessage.isDisplayed();
+	        return pageUtility.isElementDisplayed(notFoundMessage);
 	    } catch (NoSuchElementException e) {
 	        return false; // Element not present → message is not displayed
 	    }
 	}
 
-//	
-//	public boolean isNotFoundMessageDisplayed()
-//	{
-//		return notFoundMessage.isDisplayed();
-//	}
+
 
 }

@@ -6,20 +6,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utilities.PageUtility;
+
 public class ManageNewsPage {
 
 	public WebDriver driver;
+	PageUtility pageUtility;
 
 	public ManageNewsPage(WebDriver driver)
 	// TODO Auto-generated constructor stub
 	{
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+		pageUtility = new PageUtility();
 	}
 
-	@FindBy(xpath = "//p[text()='Manage News']/ancestor::div/a[contains(text(),'More info')]")
-
-	private WebElement manageNewsPage;
 	@FindBy(xpath = "//a[@class='btn btn-rounded btn-danger']")
 	private WebElement newButton;
 	@FindBy(xpath = "//textarea[@id='news']")
@@ -35,53 +36,56 @@ public class ManageNewsPage {
 	private WebElement searchResultButton;
 	@FindBy(xpath = "//a[@class='btn btn-rounded btn-warning']")
 	private WebElement resetButton;
-	@FindBy(className="alert-success")
+	@FindBy(className = "alert-success")
 	private WebElement successMessage;
-	@FindBy(xpath="//*[@id='res' and contains(., 'RESULT NOT FOUND')]")
+	@FindBy(xpath = "//*[@id='res' and contains(., 'RESULT NOT FOUND')]")
 	private WebElement notFoundMessage;
 
-	public void goToManageNewsPage() {
-		manageNewsPage.click();
+	public ManageNewsPage clickOnNewButton() {
+		pageUtility.clickElement(newButton);
+		return this;
 	}
 
-	public void clickOnNewButton() {
-		newButton.click();
+	public ManageNewsPage enterNewsTitleInsideTextBox(String newsTitle) {
+		pageUtility.enterText(textbox, newsTitle);
+		return this;
 	}
 
-	public void enterNewsTitleInsideTextBox(String newsTitle) {
-		textbox.sendKeys(newsTitle);
+	public ManageNewsPage clickOnSaveButton() {
+		pageUtility.clickElement(saveButton);
+		return this;
 	}
 
-	public void clickOnSaveButton() {
-		saveButton.click();
+	public ManageNewsPage clickOnSearch() {
+		pageUtility.clickElement(searchNews);
+		return this;
 	}
 
-	public void clickOnSearch() {
-		searchNews.click();
+	public ManageNewsPage enterNewsTitlInsideSearchBox(String newsTitle) {
+		pageUtility.enterText(searchTextBox, newsTitle);
+		return this;
 	}
 
-	public void enterNewsTitlInsideSearchBox(String newsTitle) {
-		searchTextBox.sendKeys(newsTitle);
+	public ManageNewsPage clickOnSearchResultButton() {
+		pageUtility.clickElement(searchResultButton);
+		return this;
 	}
 
-	public void clickOnSearchResultButton() {
-		searchResultButton.click();
+	public ManageNewsPage clickOnResetButton() {
+		pageUtility.clickElement(resetButton);
+		return this;
+	}
+//assertion
+	public boolean isNewsTitleSuccessMessageDispalyed() {
+		return pageUtility.isElementDisplayed(successMessage);
 	}
 
-	public void clickOnResetButton() {
-		resetButton.click();
-	}
-	public boolean isNewsTitleSuccessMessageDispalyed()
-	{
-		return successMessage.isDisplayed();
-	}
 	public boolean isNotFoundMessageDisplayed() {
-	    try {
-	        return notFoundMessage.isDisplayed();
-	    } catch (NoSuchElementException e) {
-	        return false; // Element not present → message is not displayed
-	    }
+		try {
+			return pageUtility.isElementDisplayed(notFoundMessage);
+		} catch (NoSuchElementException e) {
+			return false; // Element not present → message is not displayed
+		}
 	}
 
-	
 }

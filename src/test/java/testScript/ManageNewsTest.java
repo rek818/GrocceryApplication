@@ -8,12 +8,14 @@ import org.testng.annotations.Test;
 
 import automationCore.TestNGBase;
 import constants.Constant;
+import pages.HomePage;
 import pages.LoginPage;
 import pages.ManageNewsPage;
 import utilities.ExcelUtility;
 import utilities.RandomDataUtility;
 
 public class ManageNewsTest extends TestNGBase {
+	public HomePage homepage;
 
 	@Test
 	public void verifyWhetherUserIsAbleToAddNewNewsTitle() throws IOException {
@@ -22,22 +24,21 @@ public class ManageNewsTest extends TestNGBase {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.enterUsernameOnUsernameField(userName);
-		login.enterPasswordOnPasswordField(password);
-		login.clickSigninButton();
+		login.enterUsernameOnUsernameField(userName).enterPasswordOnPasswordField(password);
+		
+		homepage=login.clickSigninButton();
 
 		ManageNewsPage news = new ManageNewsPage(driver);
-		news.goToManageNewsPage();
-		news.clickOnNewButton();
+		news = homepage.goToManageNewsPage();
+
 //		String newsTitle=ExcelUtility.getStringData(1, 0, "NewsPage");
 		RandomDataUtility random = new RandomDataUtility();
 		String newsTitle = random.createRandomText();
 
-		news.enterNewsTitleInsideTextBox(newsTitle);
-		news.clickOnSaveButton();
-		
-		boolean successMessageDisplay=news.isNewsTitleSuccessMessageDispalyed();
-		Assert.assertTrue(successMessageDisplay,Constant.NEWSTITLENOTADDEDERROR);
+		news.clickOnNewButton().enterNewsTitleInsideTextBox(newsTitle).clickOnSaveButton();
+
+		boolean successMessageDisplay = news.isNewsTitleSuccessMessageDispalyed();
+		Assert.assertTrue(successMessageDisplay, Constant.NEWSTITLENOTADDEDERROR);
 
 	}
 
@@ -48,19 +49,17 @@ public class ManageNewsTest extends TestNGBase {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.enterUsernameOnUsernameField(userName);
-		login.enterPasswordOnPasswordField(password);
-		login.clickSigninButton();
+		login.enterUsernameOnUsernameField(userName).enterPasswordOnPasswordField(password);
+		homepage = login.clickSigninButton();
 
 		ManageNewsPage news = new ManageNewsPage(driver);
-		news.goToManageNewsPage();
-		news.clickOnSearch();
+		news = homepage.goToManageNewsPage();
+
 		String newsTitle = ExcelUtility.getStringData(1, 0, "NewsPage");
-		news.enterNewsTitlInsideSearchBox(newsTitle);
-		news.clickOnSearchResultButton();
-		
-		boolean notFoundMessageDisplay=news.isNotFoundMessageDisplayed();
-		Assert.assertFalse(notFoundMessageDisplay,Constant.NEWSTITLENOTFOUNDERROR); 
+		news.clickOnSearch().enterNewsTitlInsideSearchBox(newsTitle).clickOnSearchResultButton();
+//assertion
+		boolean notFoundMessageDisplay = news.isNotFoundMessageDisplayed();
+		Assert.assertFalse(notFoundMessageDisplay, Constant.NEWSTITLENOTFOUNDERROR);
 	}
 
 	@Test
@@ -70,12 +69,12 @@ public class ManageNewsTest extends TestNGBase {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.enterUsernameOnUsernameField(userName);
-		login.enterPasswordOnPasswordField(password);
-		login.clickSigninButton();
+		login.enterUsernameOnUsernameField(userName).enterPasswordOnPasswordField(password);
+
+		homepage = login.clickSigninButton();
 
 		ManageNewsPage news = new ManageNewsPage(driver);
-		news.goToManageNewsPage();
+		news = homepage.goToManageNewsPage();
 		news.clickOnResetButton();
 	}
 

@@ -5,13 +5,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utilities.PageUtility;
+
 public class LoginPage {
 
 	public WebDriver driver;
+	PageUtility pageUtility;
 
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+		pageUtility=new PageUtility();
 	}
 
 	@FindBy(name = "username")
@@ -19,32 +23,35 @@ public class LoginPage {
 	@FindBy(name = "password")
 	private WebElement passwordField;
 	@FindBy(xpath = "//button[text()='Sign In']")
-	private WebElement signin;
+	private WebElement signinButton;
 	@FindBy(xpath = "//p[text()='Dashboard']")
 	private WebElement dashboard;
 	@FindBy(xpath = "//b[text()='7rmart supermarket']")
 	private WebElement logintitle;
 
-	public void enterUsernameOnUsernameField(String userName) {
+	public LoginPage enterUsernameOnUsernameField(String userName) {
 
-		usernameField.sendKeys(userName);
+		pageUtility.enterText(usernameField,userName);
+		return this;
 
 	}
 
-	public void enterPasswordOnPasswordField(String password) {
-		passwordField.sendKeys(password);
+	public LoginPage enterPasswordOnPasswordField(String password) {
+		pageUtility.enterText(passwordField,password);
+		return this;
 	}
 
-	public void clickSigninButton() {
-		signin.click();
+	public HomePage clickSigninButton() {
+		pageUtility.clickElement(signinButton);
+		return new HomePage(driver);
 	}
-
+//no need to apply chaining for below methods as they are for assertions
 	public boolean isDashboardDisplayed() {
-		return dashboard.isDisplayed();
+		return pageUtility.isElementDisplayed(dashboard);
 	}
 
 	public String getLoginText() {
-		return logintitle.getText();
+		return pageUtility.getText(logintitle);
 	}
 
 }

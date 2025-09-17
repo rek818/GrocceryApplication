@@ -8,11 +8,14 @@ import org.testng.annotations.Test;
 import automationCore.TestNGBase;
 import constants.Constant;
 import pages.AdminUsersPage;
+import pages.HomePage;
 import pages.LoginPage;
 import utilities.ExcelUtility;
 import utilities.RandomDataUtility;
 
 public class AdminUsersTest extends TestNGBase {
+
+	public HomePage homepage;
 
 	@Test(priority = 1, description = "To verify add a new user inside AdminUsers page")
 	public void verifyUserIsAbleToAddNewUser() throws IOException {
@@ -20,25 +23,19 @@ public class AdminUsersTest extends TestNGBase {
 		String password = ExcelUtility.getStringData(1, 1, "LoginPage");
 
 		LoginPage login = new LoginPage(driver);
-		login.enterUsernameOnUsernameField(userName);
-		login.enterPasswordOnPasswordField(password);
-		login.clickSigninButton();
-
-//		String adminUserName = ExcelUtility.getStringData(1, 0, "AdminUsersPage");
-//		String adminPassword = ExcelUtility.getStringData(1, 1, "AdminUsersPage");
+		login.enterUsernameOnUsernameField(userName).enterPasswordOnPasswordField(password);
+		homepage = login.clickSigninButton();
 
 		AdminUsersPage adminpage = new AdminUsersPage(driver);
-		adminpage.clickOnMoreInfo();
-		adminpage.clickOnNew();
+		adminpage = homepage.clickOnMoreInfo();
+
+		
 
 		RandomDataUtility random = new RandomDataUtility();
 		String adminUserName = random.createRandomUsername();
 		String adminPassword = random.createRandomPassword();
-		adminpage.enterUsernameOnUsernameField(adminUserName);
-		adminpage.enterPasswordOnPasswordField(adminPassword);
-		adminpage.selectUserType();
-		adminpage.clickOnSave();
-
+		adminpage.clickOnNew().enterUsernameOnUsernameField(adminUserName).enterPasswordOnPasswordField(adminPassword).selectUserType(2).clickOnSave();
+//assertion
 		boolean alertDisplay = adminpage.isAlertMessageDisplayed();
 
 		Assert.assertTrue(alertDisplay, Constant.USERNOTADDEDERROR);
@@ -52,22 +49,17 @@ public class AdminUsersTest extends TestNGBase {
 		String password = ExcelUtility.getStringData(1, 1, "LoginPage");
 
 		LoginPage login = new LoginPage(driver);
-		login.enterUsernameOnUsernameField(userName);
-		login.enterPasswordOnPasswordField(password);
-		login.clickSigninButton();
+		login.enterUsernameOnUsernameField(userName).enterPasswordOnPasswordField(password);
+		homepage=login.clickSigninButton();
 
 		String adminUserName = ExcelUtility.getStringData(1, 0, "AdminUsersPage");
 
 		AdminUsersPage adminpage = new AdminUsersPage(driver);
-		adminpage.clickOnMoreInfo();
-		adminpage.clickOnSearch();
-		adminpage.enterUsernameOnSearchbox(adminUserName);
-		adminpage.selectUserTypeOnSearch();
-		adminpage.clickOnSearchInsideSearch();
-		
-		boolean notFoundMessageDisplay=adminpage.isNotFoundMessageDisplayed();
+		adminpage = homepage.clickOnMoreInfo().clickOnSearch().enterUsernameOnSearchbox(adminUserName).selectUserTypeOnSearch(2).clickOnSearchInsideSearch();
+
+		//assertion
+		boolean notFoundMessageDisplay = adminpage.isNotFoundMessageDisplayed();
 		Assert.assertFalse(notFoundMessageDisplay, Constant.USERNOTFOUNDERROR);
-		
 
 	}
 

@@ -10,13 +10,12 @@
       <class name="testScript.LoginTest">
       <methods>
       <include name="verifyLoginWithValidCredentials"></include>
+      <include name="verifyLoginWithInValidUsernameValidPassword"></include>
       
       </methods>
       </class>
-      <class name="testScript.HomeTest">
-      <methods>
-      <include name="verifyUserCanSuccessfullyLogout">
-      </include></methods></class>
+     
+     
       
     
     </classes>

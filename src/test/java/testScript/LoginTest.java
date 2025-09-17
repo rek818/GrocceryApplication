@@ -2,34 +2,54 @@ package testScript;
 
 
 import java.io.IOException;
-import java.lang.invoke.ConstantBootstraps;
+
 
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import automationCore.TestNGBase;
 import constants.Constant;
+import pages.HomePage;
 import pages.LoginPage;
 import utilities.ExcelUtility;
 
 public class LoginTest extends TestNGBase {
+	
+	public HomePage homepage;
+	
+	@DataProvider(name="loginData")
+	public Object[][] getDataFromDataProvider() throws IOException
+	{
+		return new Object[][]
+				{
+				
+				{ExcelUtility.getStringData(1,0 ,"LoginPage"),
+				ExcelUtility.getStringData(1,1 ,"LoginPage")}
+				
+	};
+	}
 
-	@Test(priority=1,description="sucessful user login with valid credentials",groups= {"smoke"},retryAnalyzer=retryAnalyzer.Retry.class)
-	public void verifyLoginWithValidCredentials() throws IOException {
 
-		String userName = ExcelUtility.getStringData(1, 10, "LoginPage");
-		String password = ExcelUtility.getStringData(1, 1, "LoginPage");
+	@Test(priority=1,description="sucessful user login with valid credentials",groups= {"smoke"},dataProvider="loginData")
+	public void verifyLoginWithValidCredentials(String userName,String password) throws IOException {
+
+//		String userName = ExcelUtility.getStringData(1, 0, "LoginPage");
+//		String password = ExcelUtility.getStringData(1, 1, "LoginPage");
 
 		LoginPage login = new LoginPage(driver);
-		login.enterUsernameOnUsernameField(userName);
-		login.enterPasswordOnPasswordField(password);
-		login.clickSigninButton();
+//		login.enterUsernameOnUsernameField(userName);
+//		login.enterPasswordOnPasswordField(password);
+//		login.clickSigninButton();
+		
+		login.enterUsernameOnUsernameField(userName).enterPasswordOnPasswordField(password);
+		homepage=login.clickSigninButton();//to get the control of driver to homepage
 		
 		boolean dashboardDisplay=login.isDashboardDisplayed();
 		Assert.assertTrue(dashboardDisplay,Constant.VALIDCREDENTIALERROR);
 	}
 	
-	@Test(priority=2,description="user login with invalid username and valid password")
+	@Test(priority=2,description="user login with invalid username and valid password",retryAnalyzer=retryAnalyzer.Retry.class)
 	
 	public void verifyLoginWithInValidUsernameValidPassword() throws IOException
 	{
@@ -38,11 +58,10 @@ public class LoginTest extends TestNGBase {
 		
 		LoginPage login = new LoginPage(driver);
 		
-		login.enterUsernameOnUsernameField(userName);
-		login.enterPasswordOnPasswordField(password);
-		login.clickSigninButton();
+		login.enterUsernameOnUsernameField(userName).enterPasswordOnPasswordField(password).clickSigninButton();
 		
-		String expected="7rmrt supermarket";
+		
+		String expected="7rmart supermarket";
 		String actual=login.getLoginText();
 		Assert.assertEquals(actual,expected,Constant.INVALIDUSERNAMEERROR);
 	}
@@ -55,9 +74,7 @@ public class LoginTest extends TestNGBase {
 		
 		LoginPage login = new LoginPage(driver);
 		
-		login.enterUsernameOnUsernameField(userName);
-		login.enterPasswordOnPasswordField(password);
-		login.clickSigninButton();
+		login.enterUsernameOnUsernameField(userName).enterPasswordOnPasswordField(password).clickSigninButton();
 		
 		String expected="7rmart supermarket";
 		String actual=login.getLoginText();
@@ -73,9 +90,8 @@ public class LoginTest extends TestNGBase {
 		
 		LoginPage login = new LoginPage(driver);
 		
-		login.enterUsernameOnUsernameField(userName);
-		login.enterPasswordOnPasswordField(password);
-		login.clickSigninButton();
+		login.enterUsernameOnUsernameField(userName).enterPasswordOnPasswordField(password).clickSigninButton();
+		
 		
 		String expected="7rmart supermarket";
 		String actual=login.getLoginText();

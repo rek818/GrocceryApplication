@@ -13,4 +13,40 @@ public class WaitUtility {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 	}
+	
+	
+	public void waitUntilElementisVisible(WebDriver driver, WebElement element) {
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		wait.until(ExpectedConditions.visibilityOf(element));
+	}
+	
+	
+	public void waitUntilElementisInvisible(WebDriver driver, WebElement element) {
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		wait.until(ExpectedConditions.invisibilityOf(element));
+	}
+	
+	
+	public void waitUntilElementisSelected(WebDriver driver, WebElement element) {
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		wait.until(ExpectedConditions.elementToBeSelected(element));
+	}
+	
+	
+	
+	public void waitUntilTitleContains(WebDriver driver, String title) {
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		wait.until(ExpectedConditions.titleContains(title));
+	}
+	
+		
+	public void waitUntilElementContainsText(WebDriver driver, WebElement element, String text) {
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		wait.until(ExpectedConditions.textToBePresentInElement(element, text));
+	}
 }
