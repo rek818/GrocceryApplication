@@ -17,7 +17,7 @@ import utilities.RandomDataUtility;
 public class ManageNewsTest extends TestNGBase {
 	public HomePage homepage;
 
-	@Test
+	@Test(priority=1,description="Verify whether a user is able to add new news title")
 	public void verifyWhetherUserIsAbleToAddNewNewsTitle() throws IOException {
 		String userName = ExcelUtility.getStringData(1, 0, "LoginPage");
 		String password = ExcelUtility.getStringData(1, 1, "LoginPage");
@@ -42,7 +42,7 @@ public class ManageNewsTest extends TestNGBase {
 
 	}
 
-	@Test
+	@Test(priority=2,description="verify if user could search and find a news title")
 	public void verifySearchForNewNewsTitle() throws IOException {
 		String userName = ExcelUtility.getStringData(1, 0, "LoginPage");
 		String password = ExcelUtility.getStringData(1, 1, "LoginPage");
@@ -62,7 +62,7 @@ public class ManageNewsTest extends TestNGBase {
 		Assert.assertFalse(notFoundMessageDisplay, Constant.NEWSTITLENOTFOUNDERROR);
 	}
 
-	@Test
+	@Test(priority=3,description="verify if the user could click on and find the reset button is working")
 	public void verifyResetButtonFunctionality() throws IOException {
 		String userName = ExcelUtility.getStringData(1, 0, "LoginPage");
 		String password = ExcelUtility.getStringData(1, 1, "LoginPage");

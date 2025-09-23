@@ -50,18 +50,18 @@ public class AdminUsersPage {
 	private WebElement notFoundMessage;
 
 	public AdminUsersPage clickOnNew() {
-		pageUtility.clickElement(newUser);
+		newUser.click();
 		return this;
 
 	}
 
 	public AdminUsersPage enterUsernameOnUsernameField(String adminUserName) {
-		pageUtility.enterText(username, adminUserName);
+		username.sendKeys(adminUserName);
 		return this;
 	}
 
 	public AdminUsersPage enterPasswordOnPasswordField(String adminPassword) {
-		pageUtility.enterText(password, adminPassword);
+	password.sendKeys(adminPassword);
 		return this;
 
 	}
@@ -72,7 +72,7 @@ public class AdminUsersPage {
 	}
 
 	public AdminUsersPage clickOnSave() {
-		pageUtility.clickElement(save);
+		save.click();
 		return this;
 	}
 
@@ -89,13 +89,13 @@ public class AdminUsersPage {
 	private WebElement search;
 
 	public AdminUsersPage clickOnSearch() {
-		pageUtility.clickElement(searchUser);
+		searchUser.click();
 		return this;
 
 	}
 
 	public AdminUsersPage enterUsernameOnSearchbox(String adminUserName) {
-		pageUtility.enterText(usernameOnSearch, adminUserName);
+		usernameOnSearch.sendKeys(adminUserName);
 		return this;
 	}
 
@@ -105,17 +105,17 @@ public class AdminUsersPage {
 	}
 
 	public AdminUsersPage clickOnSearchInsideSearch() {
-		pageUtility.clickElement(search);
+		search.click();
 		return this;
 	}
 
 	//assertion
 	public boolean isAlertMessageDisplayed() {
-		return pageUtility.isElementDisplayed(alertMessage);
+		return alertMessage.isDisplayed();
 	}
 	public boolean isNotFoundMessageDisplayed() {
 	    try {
-	        return pageUtility.isElementDisplayed(notFoundMessage);
+	        return notFoundMessage.isDisplayed();
 	    } catch (NoSuchElementException e) {
 	        return false; // Element not present → message is not displayed
 	    }

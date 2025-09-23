@@ -31,27 +31,28 @@ public class LoginPage {
 
 	public LoginPage enterUsernameOnUsernameField(String userName) {
 
-		pageUtility.enterText(usernameField,userName);
+		usernameField.sendKeys(userName);
 		return this;
 
 	}
 
 	public LoginPage enterPasswordOnPasswordField(String password) {
-		pageUtility.enterText(passwordField,password);
+		passwordField.sendKeys(password);
 		return this;
 	}
 
 	public HomePage clickSigninButton() {
-		pageUtility.clickElement(signinButton);
+		signinButton.click();
 		return new HomePage(driver);
 	}
 //no need to apply chaining for below methods as they are for assertions
 	public boolean isDashboardDisplayed() {
-		return pageUtility.isElementDisplayed(dashboard);
+		return dashboard.isDisplayed();
 	}
 
 	public String getLoginText() {
-		return pageUtility.getText(logintitle);
+		
+		return logintitle.getText();
 	}
 
 }

@@ -31,25 +31,26 @@ public class HomePage {
 	private WebElement manageNewsPage;
 
 	public HomePage clickOnAdmin() {
-		pageUtility.clickElement(admin);
+		admin.click();
 		return this;
 	}
 	
 	public LoginPage clickOnLogout() {
-		pageUtility.clickElement(logout);
+		logout.click();
 		return new LoginPage(driver);
+	}
+	public ManageNewsPage goToManageNewsPage() {
+		manageNewsPage.click();
+		return new ManageNewsPage(driver);
 	}
 //assertion
 	public String getText() {
-		return pageUtility.getText(title);
+		return title.getText();
 	}
 	public AdminUsersPage clickOnMoreInfo() {
-		pageUtility.clickElement(moreInfo);
+		moreInfo.click();
 		return new AdminUsersPage(driver);
 	}
-	public ManageNewsPage goToManageNewsPage() {
-		pageUtility.clickElement(manageNewsPage);
-		return new ManageNewsPage(driver);
-	}
+	
 
 }

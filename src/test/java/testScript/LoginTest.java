@@ -23,7 +23,7 @@ public class LoginTest extends TestNGBase {
 	{
 		return new Object[][]
 				{
-				
+			
 				{ExcelUtility.getStringData(1,0 ,"LoginPage"),
 				ExcelUtility.getStringData(1,1 ,"LoginPage")}
 				
@@ -53,7 +53,7 @@ public class LoginTest extends TestNGBase {
 	
 	public void verifyLoginWithInValidUsernameValidPassword() throws IOException
 	{
-		String userName= ExcelUtility.getIntegerData(2, 0, "LoginPage");
+		String userName= String.valueOf(ExcelUtility.getIntegerData(2, 0, "LoginPage"));
 		String password=ExcelUtility.getStringData(2, 1, "LoginPage");
 		
 		LoginPage login = new LoginPage(driver);
@@ -70,7 +70,7 @@ public class LoginTest extends TestNGBase {
 	public void verifyLoginWithValidUsernameInvalidPassword() throws IOException
 	{
 		String userName= ExcelUtility.getStringData(3, 0, "LoginPage");
-		String password=ExcelUtility.getIntegerData(3, 1, "LoginPage");
+		String password=String.valueOf(ExcelUtility.getIntegerData(3, 1, "LoginPage"));
 		
 		LoginPage login = new LoginPage(driver);
 		
@@ -85,8 +85,8 @@ public class LoginTest extends TestNGBase {
 	
 	public void verifyLoginWithInValidUsernameInvalidPassword() throws IOException
 	{
-		String userName= ExcelUtility.getIntegerData(4, 0, "LoginPage");
-		String password=ExcelUtility.getIntegerData(4, 1, "LoginPage");
+		String userName=String.valueOf( ExcelUtility.getIntegerData(4, 0, "LoginPage"));
+		String password=String.valueOf(ExcelUtility.getIntegerData(4, 1, "LoginPage"));
 		
 		LoginPage login = new LoginPage(driver);
 		

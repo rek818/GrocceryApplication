@@ -1,6 +1,9 @@
 package utilities;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 public class PageUtility {
@@ -10,26 +13,34 @@ public class PageUtility {
 		select.selectByIndex(index);
 
 	}
-	public void enterText(WebElement element, String value) {
-
-		element.sendKeys(value);
-
+	public void javaScriptClickAction(WebDriver driver, String showMessageButton)
+	{
+		JavascriptExecutor js = (JavascriptExecutor)driver;  // creating reference for the Interface
+		js.executeScript("arguments[0].click();", showMessageButton);
 	}
 	
-	public void clickElement(WebElement element)
+	
+	public void javaScriptScrollUpOrDown(WebDriver driver, int xAxis, int yAxis)
 	{
-		element.click();
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("window.scrollBy(xAxis,yAxis)", "");
 	}
-	public boolean isElementDisplayed(WebElement element)
+	public void rightClickonElement(WebDriver driver, WebElement element)
+	{	
+		Actions action = new Actions(driver);
+		action.contextClick(element).build().perform();
+	}	
+	
+	public void mouseHoverOnElement(WebDriver driver, WebElement element)
 	{
-		
-		return element.isDisplayed();
-	}
-	public String getText(WebElement element)
-	{
-		
-		return element.getText();
+		Actions action = new Actions(driver);
+		action.moveToElement(element).build().perform();
 	}
 	
+	public void dragAndDropAnElement(WebDriver driver, WebElement dragMe, WebElement dropMe)
+	{
+		Actions action = new Actions(driver);
+		action.dragAndDrop(dragMe, dropMe).build().perform();
+	}
 
 }

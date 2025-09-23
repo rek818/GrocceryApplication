@@ -42,47 +42,47 @@ public class ManageNewsPage {
 	private WebElement notFoundMessage;
 
 	public ManageNewsPage clickOnNewButton() {
-		pageUtility.clickElement(newButton);
+		newButton.click();
 		return this;
 	}
 
 	public ManageNewsPage enterNewsTitleInsideTextBox(String newsTitle) {
-		pageUtility.enterText(textbox, newsTitle);
+		searchTextBox.sendKeys(newsTitle);
 		return this;
 	}
 
 	public ManageNewsPage clickOnSaveButton() {
-		pageUtility.clickElement(saveButton);
+		saveButton.click();
 		return this;
 	}
 
 	public ManageNewsPage clickOnSearch() {
-		pageUtility.clickElement(searchNews);
+		searchNews.click();
 		return this;
 	}
 
 	public ManageNewsPage enterNewsTitlInsideSearchBox(String newsTitle) {
-		pageUtility.enterText(searchTextBox, newsTitle);
+		searchTextBox.sendKeys(newsTitle);
 		return this;
 	}
 
 	public ManageNewsPage clickOnSearchResultButton() {
-		pageUtility.clickElement(searchResultButton);
+		searchResultButton.click();
 		return this;
 	}
 
 	public ManageNewsPage clickOnResetButton() {
-		pageUtility.clickElement(resetButton);
+		resetButton.click();
 		return this;
 	}
 //assertion
 	public boolean isNewsTitleSuccessMessageDispalyed() {
-		return pageUtility.isElementDisplayed(successMessage);
+		return successMessage.isDisplayed();
 	}
 
 	public boolean isNotFoundMessageDisplayed() {
 		try {
-			return pageUtility.isElementDisplayed(notFoundMessage);
+			return notFoundMessage.isDisplayed();
 		} catch (NoSuchElementException e) {
 			return false; // Element not present → message is not displayed
 		}

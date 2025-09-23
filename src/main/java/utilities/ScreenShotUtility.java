@@ -24,7 +24,7 @@ public class ScreenShotUtility {
 
 			f1.mkdirs();
 		}
-		String destination = System.getProperty("user.dir") + "//outputScreenShot//" + failedTestCase + timeStamp
+		String destination = System.getProperty("user.dir") + "//OutputScreenShot//" + failedTestCase + timeStamp
 				+ ".png";
 		// String destination = f1.getPath() + "//" + failedTestCase + timeStamp +
 		// ".png";
